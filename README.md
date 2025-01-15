@@ -8,7 +8,7 @@
 - **Customizable Word Count**: Control the length of the content with a simple word count slider.  
 - **Interactive Interface**: A user-friendly interface built using Streamlit.  
 
-![Sample Output](outputs/sample_blog.png)
+<!-- ![Sample Output](outputs/sample_blog.png) -->
 
 ## 🚧 Under Development  
 JournAI is currently in its early stages. Future updates will include:  
