@@ -8,7 +8,6 @@
 - **Customizable Word Count**: Control the length of the content with a simple word count slider.  
 - **Interactive Interface**: A user-friendly interface built using Streamlit.  
 
-<!-- ![Sample Output](outputs/sample_blog.png) -->
 
 ## 🚧 Under Development  
 JournAI is currently in its early stages. Future updates will include:  
@@ -47,7 +46,7 @@ Stay tuned for exciting new features!
 4. Open the app in your browser at `localhost:8501`.  
 
 ## 🖼️ Current Output Preview  
-![Sample Blog Output](C:\Projects\python\journAI\outputs\sample_blog.png)
+![Sample Output](outputs/sample_blog.png)
 
 ## 📂 Project Structure  
 - **models/**: Pretrained models (e.g., LLaMA).  
