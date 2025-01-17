@@ -46,7 +46,7 @@ Stay tuned for exciting new features!
 4. Open the app in your browser at `localhost:8501`.  
 
 ## 🖼️ Current Output Preview  
-![Sample Output](outputs/sample_blog.png)
+![Sample Output](assets/sample_blog.png)
 
 ## 📂 Project Structure  
 - **models/**: Pretrained models (e.g., LLaMA).  
