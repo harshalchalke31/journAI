@@ -1,20 +1,41 @@
 import streamlit as st
 import os
-from langchain_groq import ChatGroq
+from transformers import AutoTokenizer, AutoModelForCausalLM
 from langchain_community.document_loaders import WebBaseLoader, PyPDFLoader, UnstructuredWordDocumentLoader, TextLoader
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.chains.combine_documents import create_stuff_documents_chain
-from langchain_core.prompts import ChatPromptTemplate
+from langchain.chains import LLMChain
+from langchain_core.prompts import PromptTemplate
 from langchain.chains import create_retrieval_chain
 from langchain_community.vectorstores import FAISS
-from sentence_transformers import SentenceTransformer
+from langchain_core.language_models.llms import LLM 
+from typing import List
+import torch
 import time
 from dotenv import load_dotenv
 load_dotenv()
 
-groq_api_key = os.environ['GROQ_API_KEY']
-st.title("Groq RAG")
+st.title("Local LLM RAG")
+
+# Load local LLM
+model_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../models/deepseek-qwen-1.5B"))
+tokenizer = AutoTokenizer.from_pretrained(model_path)
+model = AutoModelForCausalLM.from_pretrained(model_path,torch_dtype=torch.float16, device_map="auto",max_memory={0: "6GB", "cpu": "10GB"})
+
+# Define a custom LLM wrapper for our local model
+class LocalLLM(LLM):
+    def _call(self, prompt: str, stop: List[str] = None) -> str:
+        input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to("cuda")
+        with torch.no_grad():
+            output = model.generate(input_ids, max_new_tokens=1000)
+        return tokenizer.decode(output[0], skip_special_tokens=True)
+
+    @property
+    def _llm_type(self) -> str:
+        return "custom-llm"
+
+# Instantiate our local LLM
+local_llm = LocalLLM()
 
 # User selects input type
 input_type = st.selectbox("Select input type:", ["PDF", "DOC", "TXT", "URL"])
@@ -59,10 +80,8 @@ if "vector" not in st.session_state:
     else:
         st.session_state.vectors = FAISS.from_documents(st.session_state.final_documents, st.session_state.embeddings)
 
-
-llm = ChatGroq(api_key=groq_api_key, model="mixtral-8x7b-32768")
-
-prompt = ChatPromptTemplate.from_template(
+# Define LLMChain using the local model
+prompt_template = PromptTemplate(
     template="""
 Answer the question(s) based on the given context only.
 Please provide the most accurate answer to the given query.
@@ -70,13 +89,20 @@ Please provide the most accurate answer to the given query.
 {context}
 <context>
 
-Queries: 
-{input}"""
+Query: {input}
+
+
+### Response:""",
+    input_variables=["context", "input"],
 )
 
-document_chain = create_stuff_documents_chain(llm=llm, prompt=prompt)
+llm_chain = LLMChain(
+    llm=local_llm, 
+    prompt=prompt_template
+)
+
 retriever = st.session_state.vectors.as_retriever()
-retrieval_chain = create_retrieval_chain(retriever, document_chain)
+retrieval_chain = create_retrieval_chain(retriever, llm_chain)
 
 prompt = st.text_input("Input your prompt here:")
 
@@ -84,7 +110,7 @@ if prompt:
     start_time = time.process_time()
     response = retrieval_chain.invoke({'input': prompt})
     print(f"Response Time: {time.process_time()-start_time}")
-    st.write(response['answer'])
+    st.write(response['text'].split("### Response:")[-1].strip())
 
     # with streamlit expander
     with st.expander("Document Similarity Search"):
