@@ -17,8 +17,14 @@ load_dotenv()
 
 st.title("Local LLM RAG")
 
+chatmodels_list = ["Llama-2-7b-chat-hf",
+                   "deepseek-qwen-1.5B",
+                   "Llama-3.1-8B-Instruct",
+                   "Llama-3.2-3B",
+                   "Llama-3.2-3B-Instruct"]
+
 # Load local LLM
-model_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../models/deepseek-qwen-1.5B"))
+model_path = os.path.abspath(os.path.join(os.path.dirname(__file__), f"../models/{chatmodels_list[0]}"))
 tokenizer = AutoTokenizer.from_pretrained(model_path)
 model = AutoModelForCausalLM.from_pretrained(model_path,torch_dtype=torch.float16, device_map="auto",max_memory={0: "6GB", "cpu": "10GB"})
 
@@ -92,7 +98,9 @@ Please provide the most accurate answer to the given query.
 Query: {input}
 
 
-### Response:""",
+### Response:
+
+""",
     input_variables=["context", "input"],
 )
 
