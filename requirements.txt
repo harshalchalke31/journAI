@@ -1,4 +1,0 @@
-sentence-transformers
-langchain
-streamlit
-docx2txt
