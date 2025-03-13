@@ -66,7 +66,16 @@ This will launch the **interactive chat and document retrieval interface**.
 ---
 
 ## 🖼️ **Demo Screenshots**
-_(Include your demo images here)_
+### 🔹 Chatbot Interface
+![Chatbot Demo](./assets/demo1.png)
+
+![Context Awareness](./assets/demo2.png)
+
+### 🔹 API Endpoints (Swagger UI)
+![API Endpoints](./assets/api_endpoints.png)
+
+### 🔹 AI Image Generation
+![Image Generator](./assets/goa_beach.jpg)
 
 ---
 
