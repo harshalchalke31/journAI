@@ -4,6 +4,10 @@ Here's the refined **README** with the correct **project name (Generative AI Sui
 
 # 🚀 **Generative AI Suite: A Scalable RAG Chatbot with FastAPI & Streamlit**  
 
+| Interface | API Endpoints |
+|-------------------|----------------|
+| ![Chatbot](./assets/profile.png) | ![Document](./assets/api_endpoints.png) |
+
 ### **🔍 Overview**  
 **Generative AI Suite** is a **production-grade Retrieval-Augmented Generation (RAG) chatbot** powered by **locally hosted Llama 3.1 Instruct (8B), GPT APIs, and Groq models**. Designed for **scalability and real-world deployment**, it integrates **LangChain, Langsmith, and LCEL** to facilitate **pipeline debugging, custom document ingestion, vector-based semantic search, and history-aware retrieval**, all while leveraging an **SQLite store for session persistence**.
 
