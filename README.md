@@ -1,129 +1,217 @@
-Here's the refined **README** with the correct **project name (Generative AI Suite)** and full adherence to the **project description** you provided.
+# Enterprise RAG Knowledge Base Chatbot
+
+## Preview
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="assets/profile.png" width="220" />
+    </td>
+    <td align="center">
+      <img src="assets/demo1.png" width="220" />
+    </td>
+    <td align="center">
+      <img src="assets/demo2.png" width="220" />
+    </td>
+    <td align="center">
+      <img src="assets/sample_blog.png" width="220" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><b>User Profile</b></td>
+    <td align="center"><b>Chat Interface</b></td>
+    <td align="center"><b>Multi Turn Conversation</b></td>
+    <td align="center"><b>Source Grounded Response</b></td>
+  </tr>
+</table>
 
 ---
 
-# 🚀 **Generative AI Suite: A Scalable RAG Chatbot with FastAPI & Streamlit**  
+## Introduction
 
-| Interface | API Endpoints |
-|-------------------|----------------|
-| ![Chatbot](./assets/profile.png) | ![Document](./assets/api_endpoints.png) |
+This project is an enterprise grade Retrieval Augmented Generation platform designed to enable accurate and context aware question answering over large collections of internal documents. The system combines large language models with a structured retrieval pipeline to ensure responses are grounded in verified source material rather than relying solely on parametric model knowledge.
 
-### **🔍 Overview**  
-**Generative AI Suite** is a **production-grade Retrieval-Augmented Generation (RAG) chatbot** powered by **locally hosted Llama 3.1 Instruct (8B), GPT APIs, and Groq models**. Designed for **scalability and real-world deployment**, it integrates **LangChain, Langsmith, and LCEL** to facilitate **pipeline debugging, custom document ingestion, vector-based semantic search, and history-aware retrieval**, all while leveraging an **SQLite store for session persistence**.
-
-Additionally, this suite offers **multi-user FastAPI endpoints** and an interactive **Streamlit UI**, supporting:
-- **Local LLMs**
-- **Groq-accelerated RAGorChat**
-- **GPT-like interactions**
-- **SDXL-Turbo-powered image generation**
+The platform is built as a full stack web application that supports multi turn conversations, secure access control, and scalable document ingestion. It demonstrates how modern LLM systems can be deployed responsibly for enterprise use cases such as internal knowledge management, technical support, and decision assistance.
 
 ---
 
-## 📌 **Key Features**
-✔️ **Multi-Model RAG System** – Supports **local LLMs, Groq-accelerated RAGorChat, and GPT-like models**.  
-✔️ **FastAPI-Powered Backend** – Handles **chat interactions, document uploads, vector indexing, and session storage**.  
-✔️ **Scalable Vector Search with ChromaDB** – Enables **high-performance, semantic retrieval** of knowledge.  
-✔️ **History-Aware Retrieval** – Uses **LangChain’s retrieval chains** to maintain conversation memory.  
-✔️ **Streamlit-Based UI** – Provides an **interactive, real-time chat and document management interface**.  
-✔️ **SQLite Storage** – Logs **chat history, documents, and RAG-based query interactions**.  
-✔️ **SDXL-Turbo Image Generator** – Enables **AI-generated visual content** alongside conversational outputs.  
+## Skills and Technologies Used
+
+### Frontend
+
+<table>
+  <tr>
+    <td align="center" width="120">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original-wordmark.svg" width="48"/>
+      <br/>React
+    </td>
+    <td align="center" width="120">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-plain-wordmark.svg" width="48"/>
+      <br/>HTML
+    </td>
+    <td align="center" width="120">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-plain-wordmark.svg" width="48"/>
+      <br/>CSS
+    </td>
+    <td align="center" width="120">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" width="48"/>
+      <br/>JavaScript
+    </td>
+  </tr>
+</table>
 
 ---
 
-## 🏗️ **Project Structure**
-```
-├── main.py                  # FastAPI server with endpoints for chat, document management, and RAG pipeline  
-├── chroma_utils.py          # Vector storage & retrieval using ChromaDB  
-├── db_utils.py              # SQLite database management  
-├── langchain_utils.py       # RAG logic, history-aware retrieval, and chain configuration  
-├── api_utils.py             # Streamlit API communication with FastAPI  
-├── pydantic_models.py       # Data models for FastAPI request handling  
-├── streamlit_app.py         # Streamlit UI application  
-├── sidebar.py               # Sidebar UI for document handling & model selection  
-├── requirements.txt         # Dependency management  
-└── chroma_db/               # Persistent vector store directory  
-```
+### Backend
+
+<table>
+  <tr>
+    <td align="center" width="140">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original-wordmark.svg" width="48"/>
+      <br/>Node.js
+    </td>
+    <td align="center" width="140">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" width="48"/>
+      <br/>Express
+    </td>
+  </tr>
+</table>
 
 ---
 
-## 🚀 **Quick Start Guide**
+### Artificial Intelligence and Language Models
 
-### **1️⃣ Install Dependencies**
-Ensure **Python 3.10+** is installed, then run:
-```bash
-pip install -r requirements.txt
-```
-
-### **2️⃣ Start the FastAPI Backend**
-```bash
-uvicorn main:app --reload
-```
-- API Docs (Swagger UI): **[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)**  
-- Redoc UI: **[http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)**  
-
-### **3️⃣ Run the Streamlit Frontend**
-```bash
-streamlit run streamlit_app.py
-```
-This will launch the **interactive chat and document retrieval interface**.
+<table>
+  <tr>
+    <td align="center" width="140">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" width="48"/>
+      <br/>Python
+    </td>
+    <td align="center" width="140">
+      <img src="https://images.seeklogo.com/logo-png/52/1/groq-logo-png_seeklogo-525869.png" width="48"/>
+      <br/>LLMs
+    </td>
+  </tr>
+</table>
 
 ---
 
-## 🖼️ **Demo Screenshots**
-### 🔹 Chatbot Interface
-![Chatbot Demo](./assets/demo1.png)
+### Storage
 
-![Context Awareness](./assets/demo2.png)
-
-### 🔹 API Endpoints (Swagger UI)
-![API Endpoints](./assets/api_endpoints.png)
-
-### 🔹 AI Image Generation
-![Image Generator](./assets/goa_beach.jpg)
-
----
-
-## 🔧 **Tech Stack**
-- **LLMs**: Llama 3.1 (8B), GPT-4o, Groq Models  
-- **Frameworks**: FastAPI, Streamlit, LangChain, Langsmith, LCEL  
-- **Vector Search**: ChromaDB  
-- **Database**: SQLite  
-- **Deployment**: Uvicorn, Python  
+<table>
+  <tr>
+    <td align="center" width="140">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original-wordmark.svg" width="48"/>
+      <br/>MongoDB
+    </td>
+    <td align="center" width="140">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/facebook/facebook-original.svg" width="48"/>
+      <br/>FAISS vector store
+    </td>
+  </tr>
+</table>
 
 ---
 
-## 📖 **Usage Instructions**
-### 🔹 **Chatbot with RAG**
-- Ask **complex questions** and receive **intelligent, history-aware responses**.  
-- Supports **multi-model interactions** (Llama 3.1, GPT, Groq).  
+### Agent Frameworks
 
-### 🔹 **Document Ingestion & Retrieval**
-- **Upload PDFs, DOCX, and HTML** files to store knowledge.  
-- **Perform semantic search** over indexed documents.  
-- **Manage files via the UI** (list, delete).  
-
-### 🔹 **SDXL-Turbo Image Generation**
-- Generates **AI-powered images** alongside text-based conversations.  
+<table>
+  <tr>
+    <td align="center" width="180">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/google/google-original.svg" width="48"/>
+      <br/>Google ADK
+    </td>
+  </tr>
+</table>
 
 ---
 
-## 🛠 **Contributing**
-We welcome contributions!  
-- Enhance **retrieval quality** with better embedding techniques.  
-- Improve **UI/UX for Streamlit**.  
-- Extend **multi-model support** with additional LLMs.  
+### DevOps and Tooling
+
+<table>
+  <tr>
+    <td align="center" width="140">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" width="48"/>
+      <br/>Docker
+    </td>
+    <td align="center" width="140">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" width="48"/>
+      <br/>GitHub
+    </td>
+  </tr>
+</table>
+
+
+## System Architecture
+
+The system follows a modular architecture separating user interaction, retrieval, generation, and orchestration layers.
+
+The frontend provides a ChatGPT style conversational interface that supports multi turn dialogue and streaming responses. The backend manages user authentication, conversation state, document ingestion workflows, and request routing.
+
+Documents are ingested through a preprocessing pipeline that performs cleaning, chunking, and embedding generation. Embeddings are stored in a vector database to enable efficient semantic retrieval. At query time, the most relevant document chunks are retrieved and injected into the language model prompt to generate grounded responses.
+
+Agent based orchestration is used to manage retrieval, reasoning, and response synthesis as distinct steps within the pipeline.
 
 ---
 
-## ⚡ **Future Enhancements**
-✅ **Fine-tuning with Custom Datasets**  
-✅ **Extended Conversation Memory for RAG**  
-✅ **Docker & Kubernetes Deployment**  
+## Core Components
+
+### Document Ingestion Pipeline
+
+- Upload and parse enterprise documents
+- Clean and normalize text
+- Chunk documents into semantically meaningful units
+- Generate embeddings and store them in the vector database
+
+### Retrieval and Generation Pipeline
+
+- Convert user queries into embeddings
+- Perform semantic search over stored document vectors
+- Retrieve top relevant chunks
+- Inject retrieved context into the language model prompt
+- Generate responses grounded in source documents
+
+### Agent Orchestration
+
+- Tool based agents manage retrieval and reasoning steps
+- Separation of concerns between search, synthesis, and response formatting
+- Extensible design for adding new tools or modalities
 
 ---
 
-🚀 **Generative AI Suite is built for powerful, scalable, and context-aware AI interactions. Join us in pushing the boundaries of intelligent retrieval!** 🎯
+## Features
+
+- Multi turn conversational interface
+- Context aware responses grounded in enterprise documents
+- Secure access control for users and data
+- Scalable document ingestion workflow
+- Streaming responses for improved user experience
+- Modular design for extensibility
 
 ---
 
-This README **clearly defines the project’s purpose, features, installation, and usage**, making it engaging and developer-friendly. Let me know if you’d like any modifications! 🔥
+## Evaluation and Results
+
+<!-- Placeholder -->
+<!-- Add latency metrics, retrieval accuracy, qualitative examples, or user evaluation results -->
+
+---
+
+## Conclusion
+
+This project demonstrates how Retrieval Augmented Generation can be applied to real world enterprise scenarios where accuracy, traceability, and control are critical. By combining vector search, agent based orchestration, and full stack engineering, the system moves beyond simple chatbot implementations toward production ready AI assistants.
+
+The platform serves as a strong example of applied LLM engineering focused on reliability, scalability, and responsible deployment.
+
+---
+
+## Useful Links
+
+- Project repository  
+  <!-- Add GitHub link -->
+
+- Author GitHub  
+  https://github.com/harshalchalke31
+
+- LinkedIn  
+  https://linkedin.com/in/harshalchalke31
