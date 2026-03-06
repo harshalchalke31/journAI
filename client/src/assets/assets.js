@@ -5,6 +5,11 @@ import ai_image4 from "/ai_image4.jpg";
 import ai_image5 from "/ai_image5.jpg";
 import ai_image6 from "/ai_image6.jpg";
 import ai_image7 from "/ai_image7.jpg";
+import logo from "/logo.svg"
+
+export const assets = {
+    logo
+}
 
 export const dummyUserData = {
     "_id": "689c6deed410acddc0d95a0e",
