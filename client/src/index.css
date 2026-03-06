@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import "tailwindcss";
+
+
+/* Set custom variant - Allows us to create page in both light and dark modes */
+@custom-variant dark (&:where(.dark,.dark *));
+
+/* Set font for entire project- Quantico */
+*{
+    font-family: "PT Serif", serif;
+}
+
+/* Set theme */
+@theme{
+    --color-primary: #cb3c27;
+}
+/* Set scroll bar to off */
+::-webkit-scrollbar{
+    display: none;
+}

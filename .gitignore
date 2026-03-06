@@ -171,3 +171,5 @@ cython_debug/
 .pypirc
 models
 data
+
+./client/src/assets/ref_assets
