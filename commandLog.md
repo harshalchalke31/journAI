@@ -8,3 +8,6 @@ npm install react-router-dom
 
 ## install Tailwind css
 npm install tailwindcss @tailwindcss/vite
+
+## Install md and prism
+npm install react-markdown prismjs

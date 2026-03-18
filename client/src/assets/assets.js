@@ -244,3 +244,34 @@ export const dummyChats = [
         "updatedAt": "2025-08-14T09:39:19.046Z",
     }
 ]
+
+export const dummyPublishedImages = [
+    {
+        "imageUrl": ai_image7,
+        "userName": "GreatStack"
+    },
+    {
+        "imageUrl": ai_image6,
+        "userName": "GreatStack"
+    },
+    {
+        "imageUrl": ai_image5,
+        "userName": "GreatStack"
+    },
+    {
+        "imageUrl": ai_image4,
+        "userName": "GreatStack"
+    },
+    {
+        "imageUrl": ai_image3,
+        "userName": "GreatStack"
+    },
+    {
+        "imageUrl": ai_image2,
+        "userName": "GreatStack"
+    },
+    {
+        "imageUrl": ai_image1,
+        "userName": "GreatStack"
+    }
+]

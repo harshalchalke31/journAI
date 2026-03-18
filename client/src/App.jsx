@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
 import Sidebar from './components/Sidebar'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Chatbox from './components/Chatbox'
 import Credits from './pages/Credits'
 import Community from './pages/Community'
 import { Menu } from 'lucide-react'
+import './assets/prism.css'
+import Loading from './pages/Loading'
 
 
 const App = () => {
   const [isMenuOpen, SetIsMenuOpen] = useState(false)
+  const {pathname} = useLocation()
+  if(pathname==='/loading') return <Loading />
   return (
     <>
     {!isMenuOpen && <Menu className='absolute top-3 left-3 size-6 

@@ -3,9 +3,10 @@ import { useAppContext } from '../context/AppContext'
 import { Coins, Cross, CrossIcon, Diamond, DiamondIcon, DiamondPlus, Edit, File, GalleryHorizontal, GalleryThumbnails, Image, Images, LogOut, PictureInPicture, Search, Trash2, Upload, User, X } from 'lucide-react'
 import { assets } from '../assets/assets'
 import moment from 'moment'
+import Markdown from 'react-markdown'
 
-const Sidebar = ({isMenuOpen, SetIsMenuOpen}) => {
-  const { chats, setSelectedChat, theme, SetTheme, user, navigate } = useAppContext()
+const Sidebar = ({ isMenuOpen, SetIsMenuOpen }) => {
+  const { chats, SetSelectedChat, theme, SetTheme, user, navigate, setChats } = useAppContext()
   const [search, setSearch] = useState('')
   return (
     // bg-gradient-to-b from-[#242124]/30 to-[#000000]/30
@@ -22,7 +23,7 @@ const Sidebar = ({isMenuOpen, SetIsMenuOpen}) => {
         </div>
       </div>
       {/* Neww chat button */}
-      <button className='flex gap-2 items-center w-full py-2 px-2 mt-2 dark:text-white text-black dark:bg-neutral-700
+      <button  className='flex gap-2 items-center w-full py-2 px-2 mt-2 dark:text-white text-black dark:bg-neutral-700
        bg-neutral-200 text-sm rounded-xl cursor-pointer hover:bg-neutral-300 dark:hover:bg-neutral-500 transition-colors duration-300'>
         <Edit className='size-5' />New Chat
       </button>
@@ -46,12 +47,15 @@ const Sidebar = ({isMenuOpen, SetIsMenuOpen}) => {
         {chats.filter((chat) => chat.messages[0] ? chat.messages[0]?.content.toLowerCase()
           .includes(search.toLowerCase()) : chat.name.toLowerCase().includes(search.toLowerCase()))
           .map((chat) => (
-            <div onClick={()=>{navigate('/'); SetIsMenuOpen(false);setSelectedChat(chat); }}
-            key={chat._id} className='p-2 px-4 dark:bg-[#57317C]/10 border border-neutral-500
+            <div onClick={() => { navigate('/'); SetIsMenuOpen(false); SetSelectedChat(chat); }}
+              key={chat._id} className='p-2 px-4 dark:bg-[#57317C]/10 border border-neutral-500
           dark:border-[#80609F]/15 rounded-xl cursor-pointer flex justify-between group'>
               <div>
-                <p className='truncate-w-full'>{chat.messages.length > 0 ? chat.messages[0].content.slice(0, 32) :
-                  chat.name}</p>
+                <p className='truncate-w-full'>
+
+                  {chat.messages.length > 0 ? chat.messages[0].content.slice(0, 32) :
+                    chat.name}
+                </p>
                 <p className='text-xs text-neutral-500 dark:text-[#B1A6C0]'>{moment(chat.updatedAt).fromNow()}</p>
               </div>
               <Trash2 className='hidden group-hover:block w-4 cursor-pointer dark:invert' />
@@ -60,13 +64,13 @@ const Sidebar = ({isMenuOpen, SetIsMenuOpen}) => {
           ))}
       </div>
       {/* Community Images */}
-      <div onClick={() => { navigate('/community');SetIsMenuOpen(false) }} className='flex items-center gap-2 p-3 mt-2 border border-neutral-500 rounded-xl
+      <div onClick={() => { navigate('/community'); SetIsMenuOpen(false) }} className='flex items-center gap-2 p-3 mt-2 border border-neutral-500 rounded-xl
       dark:border-neutral-300 cursor-pointer hover:scale-105 transition-all duration-300'>
         <Images className='size-5 dark:text-white' />
         <p className='text-sm'>Generated Images</p>
       </div>
       {/* Credit page */}
-      <div onClick={() => { navigate('/credits');SetIsMenuOpen(false) }} className='flex items-center gap-2 p-3 mt-2 border border-neutral-500 rounded-xl
+      <div onClick={() => { navigate('/credits'); SetIsMenuOpen(false) }} className='flex items-center gap-2 p-3 mt-2 border border-neutral-500 rounded-xl
       dark:border-neutral-300 cursor-pointer hover:scale-105 transition-all duration-300'>
         <DiamondPlus className='size-5 dark:text-white' />
         <div className='flex flex-col text-sm'>
@@ -98,8 +102,8 @@ const Sidebar = ({isMenuOpen, SetIsMenuOpen}) => {
         <p className='flex-1 text-sm dark:text-white truncate'>{user ? user.name : 'Login'}</p>
         {user && <LogOut className='size-5 cursor-pointer hidden dark:text-white group-hover:block' />}
       </div>
-          <X onClick={()=>SetIsMenuOpen(false)}
-          className='absolute top-3 right-3 size-5 cursor-pointer md:hidden dark:text-white 
+      <X onClick={() => SetIsMenuOpen(false)}
+        className='absolute top-3 right-3 size-5 cursor-pointer md:hidden dark:text-white 
           dark:hover:bg-neutral-500 hover:bg-neutral-300 rounded-md'/>
     </div>
   )

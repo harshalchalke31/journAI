@@ -18,3 +18,23 @@
 ::-webkit-scrollbar{
     display: none;
 }
+
+/* Reset tw to format text using md */
+.reset-tw :not(pre):not(code){
+    all:revert;
+}
+
+@keyframes dot-scale {
+  0%, 100% {
+    transform: scale(0.7);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-dot-scale {
+  animation: dot-scale 1s ease-in-out infinite;
+}
