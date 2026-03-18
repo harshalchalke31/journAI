@@ -11,3 +11,7 @@ npm install tailwindcss @tailwindcss/vite
 
 ## Install md and prism
 npm install react-markdown prismjs
+
+## server side
+npm install express cors dotenv mongoose jsonwebtoken bcryptjs
+npm install --save-dev nodemon
