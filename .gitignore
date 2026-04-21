@@ -21,4 +21,3 @@ venv.bak/
 ./client/src/assets/ref_assets
 ./old_files/mainenv
 mainenv
-node_modules
