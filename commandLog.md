@@ -26,3 +26,8 @@ npm install @google/genai
 ## Install Imagekit
 npm install @imagekit/nodejs
 npm install axios
+
+## Install Stripe
+npm install stripe
+### For verifying stripe webhooks
+npm install svix 

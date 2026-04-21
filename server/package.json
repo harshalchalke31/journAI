@@ -21,7 +21,9 @@
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.3.1",
-    "openai": "^6.33.0"
+    "openai": "^6.33.0",
+    "stripe": "^22.0.2",
+    "svix": "^1.91.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
