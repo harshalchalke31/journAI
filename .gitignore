@@ -22,3 +22,4 @@ venv.bak/
 ./old_files/mainenv
 mainenv
 node_modules
+./server/node_modules
