@@ -31,3 +31,11 @@ npm install axios
 npm install stripe
 ### For verifying stripe webhooks
 npm install svix 
+
+## To re-install Node due to errors:
+rm -r -fo node_modules
+del package-lock.json
+npm install
+
+## client side
+npm install axios react-hot-toast

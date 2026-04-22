@@ -4,10 +4,35 @@ import { Coins, Cross, CrossIcon, Diamond, DiamondIcon, DiamondPlus, Edit, File,
 import { assets } from '../assets/assets'
 import moment from 'moment'
 import Markdown from 'react-markdown'
+import toast from 'react-hot-toast'
 
 const Sidebar = ({ isMenuOpen, SetIsMenuOpen }) => {
-  const { chats, SetSelectedChat, theme, SetTheme, user, navigate, setChats } = useAppContext()
+  const { chats, SetSelectedChat, theme, SetTheme, user, navigate, setChats, createNewChat,
+    axios, fetchusersChats, setToken , token
+  } = useAppContext()
+  const logout = () => {
+    localStorage.removeItem("token")
+    setToken(null)
+    toast.success("Logged Out Successfully!")
+  }
   const [search, setSearch] = useState('')
+
+  const deleteChat = async (e, chatId) => {
+    try {
+      e.stopPropagation()
+      const confirm = window.confirm("Are you sure you want to delete this chat?")
+      if(!confirm) return
+      const {data} = await axios.post("/api/chat/delete", {chatId}, {headers:{Authorization: token}})
+      if(data.success){
+        setChats(prev => prev.filter(chat => chat._id !== chatId))
+        await fetchusersChats()
+        toast.success(data.message)
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+
   return (
     // bg-gradient-to-b from-[#242124]/30 to-[#000000]/30
     <div className={`flex flex-col h-screen min-w-72 p-5 dar:bg-neutral-700
@@ -15,16 +40,17 @@ const Sidebar = ({ isMenuOpen, SetIsMenuOpen }) => {
     ${!isMenuOpen && 'max-md:-translate-x-full'}`}>
       {/* Logo */}
       <div className='flex items-center gap-3 dark:bg-neutral-800 text-white px-2 py-2 rounded-xl
-      shadow-md w-fit'>
+      shadow-md w-fit border border-neutral-300 hover:scale-105 transition-all duration-300 cursor-pointer' onClick={() => navigate('/')}>
         <img src={assets.logo} className='h-10 w-10 object-contain ' />
         <div className='flex flex-col leading-tight'>
           <p className='text-lg font-semibold dark:text-white text-black'>RAGBOT</p>
           <p className='text-xs text-neutral-500'>Enterprise document assistent</p>
         </div>
       </div>
-      {/* Neww chat button */}
-      <button  className='flex gap-2 items-center w-full py-2 px-2 mt-2 dark:text-white text-black dark:bg-neutral-700
-       bg-neutral-200 text-sm rounded-xl cursor-pointer hover:bg-neutral-300 dark:hover:bg-neutral-500 transition-colors duration-300'>
+      {/* New chat button */}
+      <button className='flex gap-2 items-center w-full py-2 px-2 mt-2 dark:text-white text-black dark:bg-neutral-700
+       bg-neutral-200 text-sm rounded-xl cursor-pointer hover:bg-neutral-300 dark:hover:bg-neutral-500 transition-colors duration-300'
+       onClick={createNewChat}>
         <Edit className='size-5' />New Chat
       </button>
       <button className='flex gap-2 items-center w-full py-2 px-2 mt-2 dark:text-white text-black dark:bg-neutral-700
@@ -58,7 +84,8 @@ const Sidebar = ({ isMenuOpen, SetIsMenuOpen }) => {
                 </p>
                 <p className='text-xs text-neutral-500 dark:text-[#B1A6C0]'>{moment(chat.updatedAt).fromNow()}</p>
               </div>
-              <Trash2 className='hidden group-hover:block w-4 cursor-pointer dark:invert' />
+              <Trash2 className='hidden group-hover:block w-4 cursor-pointer dark:invert'
+              onClick={e=>toast.promise(deleteChat(e, chat._id), {loading: "deleting..."})} />
 
             </div>
           ))}
@@ -100,7 +127,7 @@ const Sidebar = ({ isMenuOpen, SetIsMenuOpen }) => {
       dark:border-neutral-300 cursor-pointer group'>
         <User className='size-5 dark:text-white rounded-full' />
         <p className='flex-1 text-sm dark:text-white truncate'>{user ? user.name : 'Login'}</p>
-        {user && <LogOut className='size-5 cursor-pointer hidden dark:text-white group-hover:block' />}
+        {user && <LogOut onClick={logout} className='size-5 cursor-pointer hidden dark:text-white group-hover:block' />}
       </div>
       <X onClick={() => SetIsMenuOpen(false)}
         className='absolute top-3 right-3 size-5 cursor-pointer md:hidden dark:text-white 
